@@ -1,16 +1,31 @@
 package com.todos.app.demo.student;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+@Entity
+@Table
 public class Student {
 
-    private int id;
+    @Id
+    @SequenceGenerator(name = "student_sequence",
+    sequenceName = "student_sequence",
+            allocationSize = 1
+
+    )
+
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "student_sequence"
+    )
+    private Long id;
     private String name;
     private String email;
     private LocalDate dob;
     private int age;
 
-    public Student(int id, String name, String email, LocalDate dob, int age) {
+    public Student(Long id, String name, String email, LocalDate dob, int age) {
         this.id = id;
         this.name = name;
         this.dob = dob;
@@ -25,7 +40,11 @@ public class Student {
 
     }
 
-    public int getId() {
+    public Student() {
+
+    }
+
+    public long getId() {
         return id;
     }
 
@@ -41,7 +60,7 @@ public class Student {
         return age;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }
