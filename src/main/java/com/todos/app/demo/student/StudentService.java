@@ -11,7 +11,7 @@ import java.util.Optional;
 @Component
 public class StudentService {
 
-    private StudentRepo studentRepo;
+    private final StudentRepo studentRepo;
 
     @Autowired
     public StudentService(  StudentRepo studentRepo) {
@@ -23,8 +23,8 @@ public class StudentService {
         studentRepo.saveAll( List.of(new Student(
                 "Bob",
                 "bob@gmail.com",
-                LocalDate.of(2000, Month.JANUARY, 11),
-                20
+                LocalDate.of(2000, Month.JANUARY, 11)
+
 
         )));
         return studentRepo.findAll();
@@ -38,13 +38,8 @@ public class StudentService {
 
 
     public Optional<Student> createStudent(long id) {
-        return Optional.of(studentRepo.save(new Student(
-                "Bob",
-                "bob@gmail.com",
-                LocalDate.of(2000, Month.JANUARY, 11),
-                20
 
-        )));
 
+        return Optional.empty();
     }
 }
