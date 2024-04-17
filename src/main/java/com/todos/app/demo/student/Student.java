@@ -32,6 +32,7 @@ public class Student {
         this.id = id;
         this.name = name;
         this.dob = dob;
+        this.email = email;
 
 
     }
@@ -39,6 +40,7 @@ public class Student {
 
         this.name = name;
         this.dob = dob;
+        this.email = email;
 
 
     }
@@ -53,6 +55,10 @@ public class Student {
 
     public String getName() {
         return name;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public LocalDate getDob() {

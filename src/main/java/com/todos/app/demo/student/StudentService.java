@@ -37,9 +37,9 @@ public class StudentService {
     }
 
 
-    public Optional<Student> createStudent(long id) {
+    public Optional<Student> createStudent(Student student) {
 
+        return Optional.of(studentRepo.save(student));
 
-        return Optional.empty();
     }
 }
