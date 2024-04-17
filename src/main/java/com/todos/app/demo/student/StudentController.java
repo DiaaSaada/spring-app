@@ -1,11 +1,11 @@
 package com.todos.app.demo.student;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 @RestController
@@ -14,8 +14,10 @@ public class StudentController {
 
 
     private final StudentService studentService;
-    public StudentController(  ) {
-        this.studentService = new StudentService();
+
+    @Autowired
+    public StudentController( StudentService  studentService ) {
+        this.studentService = studentService;
     }
 
     @GetMapping
