@@ -64,12 +64,18 @@ public class StudentService {
         if (original.isEmpty()) {
             throw new IllegalStateException("Student with ID " + id + " does not exist");
         }
-         
+
         Student student = original.get();
-        student.setEmail(updatedStudent.getEmail());
-        student.setName(updatedStudent.getName());
+        if (!updatedStudent.getEmail().isEmpty()) {
+            student.setEmail(updatedStudent.getEmail());
+        }
+        if (!updatedStudent.getName().isEmpty()) {
+            student.setName(updatedStudent.getName());
+        }
+         
         student.setDob(updatedStudent.getDob());
-        return studentRepo.save(student);
+        return student;
+        // return studentRepo.save(student);
     }
 
 
