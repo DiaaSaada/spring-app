@@ -38,12 +38,13 @@ public class StudentService {
     }
 
 
-    public Optional<Student> createStudent(Student student) {
-        Optional<Student> s = this.studentRepo.findStudentByEmail(student.getEmail());
-        System.out.println(student.getEmail() + "-" + s.isPresent());
+    public Optional<Student> createStudent(CreateStudentDTO dto) {
+        Optional<Student> s = this.studentRepo.findStudentByEmail(dto.email);
+        System.out.println(dto.email + "-" + s.isPresent());
         if (s.isPresent()) {
             throw new IllegalStateException("Invalid Email!");
         }
+        Student student = new Student(dto.name, dto.email, dto.dob);
         return Optional.of(studentRepo.save(student));
 
     }
@@ -72,7 +73,7 @@ public class StudentService {
         if (!updatedStudent.getName().isEmpty()) {
             student.setName(updatedStudent.getName());
         }
-         
+
         student.setDob(updatedStudent.getDob());
         return student;
         // return studentRepo.save(student);

@@ -1,5 +1,6 @@
 package com.todos.app.demo.student;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ public class StudentController {
 
     @Autowired
     public StudentController(StudentService studentService, StudentRepo studentRepo) {
+
         this.studentService = studentService;
 
     }
@@ -27,9 +29,16 @@ public class StudentController {
 
     }
 
+    @GetMapping(path = "/programs")
+    public Program[] getPrograms() {
+
+        return Program.values();
+
+    }
+
 
     @PostMapping
-    public Optional<Student> createStudent(@RequestBody Student student) {
+    public Optional<Student> createStudent(@Valid @RequestBody CreateStudentDTO student) {
 
         return this.studentService.createStudent(student);
 
