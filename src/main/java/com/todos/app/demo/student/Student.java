@@ -7,7 +7,7 @@ import java.time.Period;
 
 @Entity
 @Table
-public class Student {
+public class Student implements Comparable {
 
     @Id
     @SequenceGenerator(name = "student_sequence",
@@ -84,5 +84,12 @@ public class Student {
     public int getAge() {
         return Period.between(dob, LocalDate.now()).getYears();
 
+    }
+
+    // Using Comparable to sort studnets by age
+    @Override
+    public int compareTo(Object o) {
+        Student student = (Student) o;
+        return this.getAge() - student.getAge();
     }
 }

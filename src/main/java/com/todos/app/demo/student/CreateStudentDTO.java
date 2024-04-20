@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class CreateStudentDTO {
 
     @NotBlank(message = "Name is required")
-    @Size(max = 2, message = "Name max is 2")
+    @Size(max = 255, message = "Name max is 255")
     public String name;
 
     @Email(message = "Email should be valid")

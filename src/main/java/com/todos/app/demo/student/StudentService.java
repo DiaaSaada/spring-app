@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.List;
+import java.util.Arrays;
 import java.util.Optional;
 
 @Component
@@ -20,15 +18,19 @@ public class StudentService {
     }
 
 
-    public List<Student> getStudents() {
-        studentRepo.saveAll(List.of(new Student(
+    public Student[] getStudents() {
+        /*studentRepo.saveAll(List.of(new Student(
                 "Bob",
                 "bob@gmail.com",
                 LocalDate.of(2000, Month.JANUARY, 11)
 
 
-        )));
-        return studentRepo.findAll();
+        )));*/
+
+        Student[] studentArray = studentRepo.findAll().toArray(new Student[studentRepo.findAll().size()]);
+        Arrays.sort(studentArray);
+        return studentArray;
+
 
     }
 
