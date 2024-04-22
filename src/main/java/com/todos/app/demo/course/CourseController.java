@@ -15,24 +15,25 @@ public class CourseController {
 
     private final CourseService courseService;
     CourseRepo courseRepo;
+    CourseDTOMapper courseDTOMapper;
 
 
     @Autowired
-    public CourseController(CourseService courseService, CourseRepo courseRepo) {
+    public CourseController(CourseService courseService
+            , CourseRepo courseRepo
+            , CourseDTOMapper courseDTOMapper
+    ) {
 
         this.courseService = courseService;
         this.courseRepo = courseRepo;
+        this.courseDTOMapper = courseDTOMapper;
 
     }
 
     @GetMapping
     public List<CourseDTO> getCourses() {
 
-        return this.courseRepo.findAll().stream().map(course -> new CourseDTO(
-                course.getId(),
-                course.getName(),
-                course.getDescription()
-        )).collect(Collectors.toList());
+        return this.courseRepo.findAll().stream().map(courseDTOMapper).collect(Collectors.toList());
 
     }
 
