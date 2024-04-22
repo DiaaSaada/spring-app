@@ -1,9 +1,11 @@
 package com.todos.app.demo.student;
 
+import com.todos.app.demo.course.Course;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -27,6 +29,10 @@ public class Student implements Comparable {
     private LocalDate dob;
     @Transient // to be calculated, not sorted
     private int age;
+
+
+    @ManyToMany(mappedBy = "students")
+    private List<Course> courses;
 
     public Student(Long id, String name, String email, LocalDate dob) {
         this.id = id;
