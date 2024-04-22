@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Objects;
 
 @Entity
 @Table
@@ -86,10 +87,37 @@ public class Student implements Comparable {
 
     }
 
-    // Using Comparable to sort studnets by age
+    // Using Comparable to sort Students by age
     @Override
     public int compareTo(Object o) {
         Student student = (Student) o;
         return this.getAge() - student.getAge();
     }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", dob=" + dob +
+                ", age=" + this.getAge()
+                +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, email, dob, age);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return age == student.age && Objects.equals(id, student.id) && Objects.equals(name, student.name) && Objects.equals(email, student.email) && Objects.equals(dob, student.dob);
+    }
+
+
 }
